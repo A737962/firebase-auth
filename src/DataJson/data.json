@@ -1,0 +1,26 @@
+{
+   "modelData" : {
+       "content":{
+            "heading":{
+               "text" : "Weather Check"
+            },
+            "details":{
+               "heading":{
+                  "text":"Details"
+               },
+               "config":{
+                  "customClass":"detailsMargin"
+               }
+            },
+            "bannerInfo":{},
+            "forecast":{
+               "heading":{
+                  "text":"Forecast"
+               },
+               "config":{
+                  "customClass":"detailsMargin"
+               }
+            }
+       }
+   }
+}
