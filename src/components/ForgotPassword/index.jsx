@@ -28,7 +28,7 @@ export default function ForgotPassword() {
   };
 
   const handleOnClick = () => {
-    console.log("Data is ", email);
+    // console.log("Data is ", email);
   };
 
   return (

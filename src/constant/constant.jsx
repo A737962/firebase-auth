@@ -1,11 +1,11 @@
 export const firebase = {
-  firebaseApiKey: "AIzaSyABdtvZyW3G_eFjW4OGk2CuHZrIroa6e6o",
-  firebaseAuthDomain: "fir-auth-3f02d.firebaseapp.com",
-  databaseURL: "https://fir-auth-3f02d.firebaseio.com",
-  projectId: "fir-auth-3f02d",
-  storageBucket: "fir-auth-3f02d.appspot.com",
-  messagingSenderId: "151388192122",
-  appId: "1:151388192122:web:d43d8b032b41c905332ac3",
+  firebaseApiKey: "",
+  firebaseAuthDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
 };
 
 export const reduxFirebase = {

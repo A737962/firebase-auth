@@ -40,7 +40,6 @@ function Login(props) {
   };
 
   return (
-    console.log("Props data is ", props.loginData),
     (
       <div className="container-fluid">
         <div className="main-container d-flex min-vh-100 align-items-center justify-content-center">

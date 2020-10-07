@@ -43,7 +43,6 @@ function Registration(props) {
   };
 
   const handleOnClick = () => {
-    console.log("Data is ", credentials);
     props.register(credentials)
   };
 
