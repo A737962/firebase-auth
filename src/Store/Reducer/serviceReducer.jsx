@@ -40,13 +40,6 @@ function serviceReducer(state = initialState, action) {
     case ActionType.SET_WEATHER_FORCAST_DATA:
       let foreCastDetails = JSON.parse(JSON.stringify(action.data));
       return { ...state, foreCastDetails };
-    case ActionType.SET_LOGIN_DATA:
-      let loginData = action.data;
-      localStorage.setItem("authToken", JSON.stringify(loginData.idToken));
-      return { ...state, loginData };
-      case ActionType.SET_REGISTER_DATA:
-        let registerData = action.data;
-        return { ...state, registerData };
     default:
       return state;
   }

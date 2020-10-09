@@ -24,20 +24,6 @@ export function setWeatherDate(data) {
     };
 }
 
-export function setLoginData(data) {
-    return {
-         type: ActionType.SET_LOGIN_DATA,
-         data: data,
-     };
- }
-
- export function setRegisterData(data) {
-    return {
-         type: ActionType.SET_REGISTER_DATA,
-         data: data,
-     };
- }
-
 /**
  * Function to return the actionType to set the forecast data recieved
  * @param {*} data weather forecast details
@@ -49,3 +35,43 @@ export function setWeatherForcastDate(data) {
     };
 }
 
+
+
+//Firebase auth
+
+//Password Reset
+export const passwordResetSuccess = (decoded) => {
+    return {
+      type: ActionType.PASSWORD_RESET_SUCCESS,
+      payload: decoded,
+    };
+  };
+
+//Set logged in user
+export const setCurrentUser = (decoded) => {
+    return {
+      type: ActionType.SET_CURRENT_USER,
+      payload: decoded,
+    };
+  };
+  
+  //User loading
+  export const setUserLoading = () => {
+    return {
+      type: ActionType.USER_LOADING,
+    };
+  };
+
+  export const getErrors = (error) => {
+      return {
+          type: ActionType.GET_ERRORS,
+          payload: error
+      }
+  }
+
+  export const registerSuccess = (successMessage) => {
+    return {
+        type: ActionType.REGISTER_SUCCESS,
+        payload: successMessage
+    }
+}

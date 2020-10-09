@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Before runnig the application
+
+Please enter your firebase credentials in src/constant/constants.jsx
+
 ## Available Scripts
 
 In the project directory, you can run:

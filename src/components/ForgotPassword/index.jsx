@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap-grid.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ForgotPassword.css";
+import { connect } from "react-redux";
+import { resetError, resetPassword } from "../../Store/Action/ActionTask";
+import EmailValidator from "../../utils/emailValidator";
+import ErrorTextMofifier from "../../utils/errorTextModifier";
 
 const LabelInput = ({ props }) => {
   return (
@@ -20,15 +24,31 @@ const LabelInput = ({ props }) => {
   );
 };
 
-export default function ForgotPassword() {
+function ForgotPassword(props) {
+  useEffect(() => {
+    if (props.auth.passwordResetData) {
+      props.history.push("/passwordResetSuccess");
+    }
+  }, [props]);
+
   const [email, setEmail] = useState("");
+  const [buttonClick, setButtonClick] = useState(false);
+  const [invalidEmail, setInvalidEmail] = useState(false);
 
   const handleOnChange = (e) => {
     setEmail(e.target.value);
+    setButtonClick(false);
   };
 
   const handleOnClick = () => {
-    // console.log("Data is ", email);
+    props.resetError();
+    if (EmailValidator(email)) {
+      setInvalidEmail(true);
+    } else {
+      setInvalidEmail(false);
+      props.resetPassword(email);
+    }
+    setButtonClick(true);
   };
 
   return (
@@ -38,6 +58,11 @@ export default function ForgotPassword() {
           <h3 className="text-center text-dark mb-3">
             Please Enter The Registered Email Address
           </h3>
+          {buttonClick && props.errors.error !== undefined ? (
+            <h5 className="text-center text-danger mb-3">
+              {ErrorTextMofifier(props.errors.error.message)}
+            </h5>
+          ) : null}
           <div className="row flex-nowrap justify-content-center text-dark mx-0 row-3">
             <div>
               <div className="form-group">
@@ -56,6 +81,11 @@ export default function ForgotPassword() {
                 <small id="emailHelp" className="form-text text-dark">
                   We'll never share your email with anyone else.
                 </small>
+                {buttonClick && invalidEmail ? (
+                  <small id="emailHelp" className="form-text text-danger">
+                    Invalid Email address
+                  </small>
+                ) : null}
               </div>
               <button
                 type="submit"
@@ -74,3 +104,17 @@ export default function ForgotPassword() {
     </div>
   );
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  resetPassword: (email) => dispatch(resetPassword(email)),
+  resetError: () => dispatch(resetError()),
+});
+
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebaseAuthReducer,
+    errors: state.firebaseErrorReducer,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);
